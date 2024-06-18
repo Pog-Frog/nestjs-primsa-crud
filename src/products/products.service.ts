@@ -23,7 +23,6 @@ export class ProductsService {
   }
 
   update(id: string, updateProductDto: Prisma.ProductUpdateInput) {
-    console.log('updateProductDto', id);
     return this.databaseservice.product.update({
       where: { id },
       data: updateProductDto,
