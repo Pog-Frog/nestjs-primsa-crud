@@ -22,9 +22,19 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt @default(now())
   availability Availability @default(IN_STORE)
+  categoryId  String?   @db.ObjectId
+  category    Category? @relation(fields: [categoryId], references: [id])
 }
 
 enum Availability {
   IN_STORE
   ONLINE
+}
+
+model Category {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  name  String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+  products Product[]
 }
